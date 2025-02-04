@@ -1,17 +1,12 @@
 const express = require('express');
 
 const app = express();
-app.use(express.json()); // Middleware to parse JSON request body
+app.use(express.json()); 
 
 // In-memory user storage (for testing purposes)
 const users = [];
 
 /*
-📌 1. Registration API (POST /register)
-✅ URL: http://localhost:5000/register
-✅ Method: POST
-✅ Headers: { "Content-Type": "application/json" }
-✅ Body:
 {
     "name": "Alice",
     "email": "alice@example.com",
@@ -31,17 +26,12 @@ app.post('/register', (req, res) => {
     res.status(201).json({ message: 'User registered successfully', user: newUser });
 });
 
-/*
-📌 2. Login API (POST /login)
-✅ URL: http://localhost:5000/login
-✅ Method: POST
-✅ Headers: { "Content-Type": "application/json" }
-✅ Body:
-{
-    "email": "alice@example.com",
-    "password": "secure123"
-}
-*/
+
+// {
+//     "email": "alice@example.com",
+//     "password": "secure123"
+// }
+
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
@@ -57,11 +47,6 @@ app.post('/login', (req, res) => {
     res.status(200).json({ message: 'Login successful', user: { id: user.id, name: user.name, email: user.email } });
 });
 
-/*
-📌 3. Search User API (GET /search)
-✅ URL: http://localhost:5000/search?email=alice@example.com
-✅ Method: GET
-*/
 app.get('/search', (req, res) => {
     const { email } = req.query;
 
@@ -78,11 +63,6 @@ app.get('/search', (req, res) => {
 });
 
 /*
-📌 4. Profile Update API (PUT /update/:id)
-✅ URL: http://localhost:5000/update/1
-✅ Method: PUT
-✅ Headers: { "Content-Type": "application/json" }
-✅ Body:
 {
     "name": "Alice Updated"
 }
@@ -101,11 +81,7 @@ app.put('/update/:id', (req, res) => {
     res.status(200).json({ message: 'Profile updated successfully', user });
 });
 
-/*
-📌 5. Delete User API (DELETE /delete/:id)
-✅ URL: http://localhost:5000/delete/1
-✅ Method: DELETE
-*/
+
 app.delete('/delete/:id', (req, res) => {
     const { id } = req.params;
 
